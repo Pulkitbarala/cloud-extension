@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Cloud Skills Boost Task Panel",
+  "version": "2.0",
+  "description": "Floating draggable panel showing all Cloud Skills Boost tasks with scores, points, and progress.",
+  "permissions": [],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.cloudskillsboost.google/*", "*://*.cloud.google.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
