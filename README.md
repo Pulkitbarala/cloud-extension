@@ -34,10 +34,10 @@ Unzip the downloaded folder to any location on your computer.
 ## 🖼 Screenshots
 
 ### **Floating Panel on Lab Page**
-![Floating Panel](./images/panel-example.png)
+![Floating Panel](./images/cloud-1.png)
 
 ### **Progress Update**
-![Progress Update](./images/progress-update.png)
+![Progress Update](./images/cloud-2.png)
 
 ---
 
