@@ -1,3 +1,6 @@
+#===> use All-in-one folder for extension. later i will remove the other unnecesaary folders.
+
+
 # 🌟 Cloud Skills Boost – Floating Task Panel Extension
 
 This Chrome extension adds a **beautiful floating task panel** to **all Cloud Skills Boost lab pages**.  
