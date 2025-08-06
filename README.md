@@ -1,4 +1,4 @@
-#===> use All-in-one folder for extension. later i will remove the other unnecesaary folders.
+# ===> use All-in-one folder for extension. later i will remove the other unnecesaary folders.
 
 
 # 🌟 Cloud Skills Boost – Floating Task Panel Extension
