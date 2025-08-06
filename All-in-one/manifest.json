@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Cloud Skills Boost Enhancer",
+  "version": "3.0",
+  "description": "Enhances the Cloud Skills Boost experience with additional features.",
+  "permissions": [],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.cloudskillsboost.google/*", "*://*.cloud.google.com/*"],
+      "js": ["tickUpdater.js", "content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
