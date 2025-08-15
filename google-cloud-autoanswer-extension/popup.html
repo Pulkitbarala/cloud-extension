@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Popup</title>
+  <style>
+    :root { --pad: 12px; }
+    body {
+      width: 320px;
+      height: 480px;
+      margin: 0;
+      padding: var(--pad);
+      box-sizing: border-box;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #ffffff);
+      color: #1a1a1a;
+    }
+
+    #safe-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .popup-view {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transition: opacity 0.35s ease;
+      box-sizing: border-box;
+    }
+    .hidden { opacity: 0; pointer-events: none; }
+
+    .loader-orbit {
+      position: relative;
+      width: 140px;
+      height: 80px;
+      filter: drop-shadow(0 6px 16px rgba(26,115,232,0.25));
+      animation: huecycle 8s linear infinite;
+    }
+
+    .loader-orbit svg {
+      position: absolute;
+      inset: 0;
+    }
+    .loader-orbit .track {
+      stroke: url(#grad);
+      stroke-width: 2.25;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 12 10;
+      opacity: 0.9;
+      animation: dash 2.6s linear infinite;
+      filter: blur(.0px);
+    }
+
+    .loader-orbit .orb {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #1a73e8 55%, #1a73e800 70%);
+      box-shadow:
+        0 0 10px rgba(26,115,232,0.75),
+        0 0 22px rgba(142,68,173,0.45);
+      offset-path: path("M10,40 C10,10 50,10 70,40 C90,70 130,70 130,40 C130,10 90,10 70,40 C50,70 10,70 10,40 Z");
+      offset-rotate: 0deg;
+      animation: travel 2.3s cubic-bezier(.6,.2,.2,.9) infinite;
+    }
+
+    .loader-orbit .orb:nth-child(2) {
+      background: radial-gradient(circle at 35% 35%, #ffffff, #8e44ad 55%, #8e44ad00 70%);
+      animation-duration: 2.0s;
+      animation-delay: -0.5s;
+      box-shadow:
+        0 0 10px rgba(142,68,173,0.75),
+        0 0 22px rgba(26,115,232,0.35);
+    }
+    .loader-orbit .orb:nth-child(3) {
+      background: radial-gradient(circle at 35% 35%, #ffffff, #34a853 55%, #34a85300 70%);
+      animation-duration: 2.6s;
+      animation-delay: -1.0s;
+      box-shadow:
+        0 0 10px rgba(52,168,83,0.75),
+        0 0 22px rgba(26,115,232,0.25);
+    }
+    .loader-orbit .orb:nth-child(4) {
+      background: radial-gradient(circle at 35% 35%, #ffffff, #fbbc05 55%, #fbbc0500 70%);
+      animation-duration: 2.9s;
+      animation-delay: -1.45s;
+      box-shadow:
+        0 0 10px rgba(251,188,5,0.75),
+        0 0 22px rgba(142,68,173,0.25);
+    }
+
+    @keyframes travel {
+      0%   { offset-distance: 0%;   transform: scale(1); }
+      45%  { transform: scale(0.85); }
+      100% { offset-distance: 100%; transform: scale(1); }
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: -180; }
+    }
+    @keyframes huecycle {
+      to { filter: hue-rotate(360deg); }
+    }
+
+    #popup-content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.12);
+      padding: 14px 16px;
+      box-sizing: border-box;
+      animation: fadeIn 0.35s ease-out;
+    }
+    #popup-content * { max-width: 100%; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="safe-area">
+    <div id="loading-view" class="popup-view">
+      <div class="loader-orbit" aria-label="Loading">
+        <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#1a73e8"/>
+              <stop offset="50%"  stop-color="#8e44ad"/>
+              <stop offset="100%" stop-color="#1a73e8"/>
+            </linearGradient>
+          </defs>
+          <path class="track"
+                d="M10,40 C10,10 50,10 70,40 C90,70 130,70 130,40 C130,10 90,10 70,40 C50,70 10,70 10,40 Z"/>
+        </svg>
+
+        <span class="orb"></span>
+        <span class="orb"></span>
+        <span class="orb"></span>
+        <span class="orb"></span>
+      </div>
+    </div>
+
+    <div id="content-view" class="popup-view hidden">
+      <div id="popup-content"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
