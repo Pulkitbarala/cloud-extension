@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "CSB Task Tick Updater",
+  "version": "3.0",
+  "description": "Compulsory extension for first extension",
+  "permissions": [],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+    "512": "icons/icon512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.cloudskillsboost.google/*", "*://*.cloud.google.com/*"],
+      "js": ["tickUpdater.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
